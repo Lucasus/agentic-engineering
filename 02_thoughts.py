@@ -16,7 +16,7 @@ divide(a: number, b: number) -> number
 Use tools for every arithmetic operation, one call at a time.
 Arguments must be literal numbers, never expressions or nested tool calls.
 Wait for TOOL_OUTPUT. Never invent results.
-Start with a short THOUGHT about the solution, then use tools. Do not repeat thoughts.
+Start with a short THOUGHT. The reply immediately after a THOUGHT must be a TOOL call or the final OUTPUT.
 When the tool results answer the question, finish with OUTPUT.
 Reply with exactly one line using exactly one of these formats, no Markdown:
 THOUGHT: <brief next step, at most 12 words>
@@ -33,7 +33,7 @@ def parse_call(text):
 def agent(user_task):
     context = [system_message, "USER: " + user_task]
     print(context[-1])
-    while True:
+    for _ in range(20):
         reply = llm(context)
         context.append(reply)
         print(reply)
@@ -48,6 +48,7 @@ def agent(user_task):
             result = f"Error: {error}. Use one tool call with two numbers."
         context.append(f"TOOL_OUTPUT: {result}")
         print(context[-1])
+    raise RuntimeError("The model did not return OUTPUT after 20 calls.")
 
 
 if __name__ == "__main__":

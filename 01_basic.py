@@ -31,7 +31,7 @@ def parse_call(text):
 def agent(user_task):
     context = [system_message, "USER: " + user_task]
     print(context[-1])
-    while True:
+    for _ in range(20):
         reply = llm(context)
         context.append(reply)
         print(reply)
@@ -44,6 +44,7 @@ def agent(user_task):
             result = f"Error: {error}. Use one tool call with two numbers."
         context.append(f"TOOL_OUTPUT: {result}")
         print(context[-1])
+    raise RuntimeError("The model did not return OUTPUT after 20 calls.")
 
 
 if __name__ == "__main__":

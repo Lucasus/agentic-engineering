@@ -46,7 +46,10 @@ python 02_thoughts.py
 python 03_response.py
 ```
 
-The first run downloads a 4.7 GB model into `.models/`.
+The first run downloads the default Qwen2.5-7B-Instruct model (4.7 GB) into
+`.models/`. To try Gemma 4 12B Instruct (Q4_0, 7.22 GB) on the GPU, run
+`LLAMA_MODEL=gemma-4-12b gpu python 01_basic.py`. You can use the same prefix
+with the other samples. The model downloads on first use.
 
 The examples add tool calls, thoughts, and follow-up questions in that order.
 For the third example, enter `3` when asked for a multiplier. All three should
