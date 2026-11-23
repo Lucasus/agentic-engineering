@@ -1,5 +1,5 @@
 import sys
-from llm import llm
+from llm import llm, print_generation_speed
 
 
 def add(a, b):      return a + b
@@ -53,3 +53,4 @@ def agent(user_task):
 if __name__ == "__main__":
     agent(" ".join(sys.argv[1:]) or
           "17 red boxes and 25 blue boxes, with 3 items in each. How many items are there?")
+    print_generation_speed()

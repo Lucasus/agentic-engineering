@@ -2,7 +2,7 @@ from os import environ
 from pathlib import Path
 
 from huggingface_hub import snapshot_download
-from llama_cpp import Llama, llama_supports_gpu_offload
+from llama_cpp import Llama, llama_perf_context, llama_supports_gpu_offload
 
 gpu_layers = int(environ.get("LLAMA_GPU_LAYERS", "0"))
 if gpu_layers and not llama_supports_gpu_offload():
@@ -22,3 +22,12 @@ def llm(context):
     result = model.create_completion(prompt, temperature=0, max_tokens=128,
         stop=[" THOUGHT:", " TOOL:", " TOOL_OUTPUT:", " RESPONSE:", " OUTPUT:", " USER:"])
     return result["choices"][0]["text"].strip().splitlines()[0]
+
+
+def print_generation_speed():
+    timing = llama_perf_context(model.ctx)
+    if timing.t_eval_ms > 0:
+        tokens_per_second = 1000 * timing.n_eval / timing.t_eval_ms
+        print(f"Generation speed: {tokens_per_second:.1f} tokens/s")
+    else:
+        print("Generation speed: unavailable")

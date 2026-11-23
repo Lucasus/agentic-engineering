@@ -1,5 +1,5 @@
 import sys
-from llm import llm
+from llm import llm, print_generation_speed
 
 
 def add(a, b):      return a + b
@@ -58,3 +58,4 @@ def agent(user_task):
 if __name__ == "__main__":
     agent(" ".join(sys.argv[1:]) or
           "Multiply the sum of 17 and 25 by a number I will choose.")
+    print_generation_speed()
