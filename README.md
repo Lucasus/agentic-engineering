@@ -2,8 +2,8 @@
 
 ## In the Dev Container
 
-Select **Dev Containers: Reopen in Container** in VS Code. If the old container
-is already open, select **Dev Containers: Rebuild Container** once.
+Select **Dev Containers: Reopen in Container** in VS Code. Python packages
+install when the container is created.
 
 ```sh
 python 01_basic.py      # CPU
@@ -14,6 +14,14 @@ CPU mode works in the container without a GPU. The first `gpu` run installs
 CUDA packages in a separate Python environment inside the same container.
 GPU mode needs x86-64, an NVIDIA driver with CUDA 12.4 support, and Docker GPU
 access. See [Docker GPU access in WSL 2](https://docs.docker.com/desktop/features/gpu/).
+
+After changing Python dependencies, update the relevant environment from the
+repository root in the same container.
+
+```sh
+python -m pip install -r requirements.txt          # CPU
+gpu python -m pip install -r requirements-gpu.txt  # GPU
+```
 
 ## Outside the Dev Container
 

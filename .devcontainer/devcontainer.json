@@ -2,9 +2,14 @@
   "name": "Agentic Engineering",
   "build": {
     "dockerfile": "Dockerfile",
-    "context": ".."
+    "context": "."
   },
   "hostRequirements": {
     "gpu": "optional"
-  }
+  },
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:${containerWorkspaceFolder}/.devcontainer"
+  },
+  "postCreateCommand": "python -m venv \"$HOME/.venv\" && \"$HOME/.venv/bin/python\" -m pip install -r requirements.txt",
+  "waitFor": "postCreateCommand"
 }

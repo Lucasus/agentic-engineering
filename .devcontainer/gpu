@@ -4,7 +4,7 @@ set -eu
 venv="$HOME/.venv-gpu"
 if [ ! -f "$venv/.ready" ]; then
     python -m venv "$venv"
-    "$venv/bin/python" -m pip install --no-cache-dir -r /tmp/requirements-gpu.txt
+    "$venv/bin/python" -m pip install -r "$(dirname "$0")/../requirements-gpu.txt"
     touch "$venv/.ready"
 fi
 
