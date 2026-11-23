@@ -10,8 +10,10 @@ python 01_basic.py      # CPU
 gpu python 01_basic.py  # NVIDIA GPU
 ```
 
-CPU mode works in the container without a GPU. The first `gpu` run installs
-CUDA packages in a separate Python environment inside the same container.
+CPU mode works without a GPU. The first `gpu` run downloads a 1.8 GB CUDA
+package plus supporting libraries, then starts the sample automatically.
+Later runs reuse the installed packages. CPU and GPU runs share the model
+files in `.models/`.
 GPU mode needs x86-64, an NVIDIA driver with CUDA 12.4 support, and Docker GPU
 access. See [Docker GPU access in WSL 2](https://docs.docker.com/desktop/features/gpu/).
 
