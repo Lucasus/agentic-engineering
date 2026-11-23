@@ -1,0 +1,7 @@
+{
+  "name": "Agentic Engineering",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  }
+}
