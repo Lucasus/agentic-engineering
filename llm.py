@@ -13,7 +13,7 @@ folder = snapshot_download("Qwen/Qwen2.5-7B-Instruct-GGUF",
                            allow_patterns="*q4_k_m*.gguf")
 model = Llama(
     model_path=f"{folder}/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf",
-    n_ctx=4096, n_gpu_layers=gpu_layers, verbose=bool(gpu_layers),
+    n_ctx=4096, n_gpu_layers=gpu_layers, verbose=False,
 )
 
 
