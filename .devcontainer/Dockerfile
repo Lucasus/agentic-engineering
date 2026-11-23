@@ -6,7 +6,8 @@ RUN apt-get update \
     && useradd --create-home --shell /bin/bash vscode
 
 COPY requirements*.txt /tmp/
+COPY --chmod=755 .devcontainer/gpu /usr/local/bin/gpu
 USER vscode
 ENV PATH="/home/vscode/.venv/bin:${PATH}"
 RUN python -m venv /home/vscode/.venv \
-    && python -m pip install --no-cache-dir -r /tmp/requirements-gpu.txt
+    && python -m pip install --no-cache-dir -r /tmp/requirements.txt

@@ -6,13 +6,14 @@ Select **Dev Containers: Reopen in Container** in VS Code. If the old container
 is already open, select **Dev Containers: Rebuild Container** once.
 
 ```sh
-python 01_basic.py                     # CPU
-LLAMA_GPU_LAYERS=-1 python 01_basic.py # GPU
+python 01_basic.py      # CPU
+gpu python 01_basic.py  # NVIDIA GPU
 ```
 
-The container requires x86-64, an NVIDIA driver with CUDA 12.4 support, and
-[Docker GPU access in WSL 2](https://docs.docker.com/desktop/features/gpu/).
-On a machine without GPU access, use the local setup below.
+CPU mode works in the container without a GPU. The first `gpu` run installs
+CUDA packages in a separate Python environment inside the same container.
+GPU mode needs x86-64, an NVIDIA driver with CUDA 12.4 support, and Docker GPU
+access. See [Docker GPU access in WSL 2](https://docs.docker.com/desktop/features/gpu/).
 
 ## Outside the Dev Container
 

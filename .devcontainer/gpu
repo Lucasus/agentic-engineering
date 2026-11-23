@@ -1,0 +1,15 @@
+#!/bin/sh
+set -eu
+
+venv="$HOME/.venv-gpu"
+if [ ! -f "$venv/.ready" ]; then
+    python -m venv "$venv"
+    "$venv/bin/python" -m pip install --no-cache-dir -r /tmp/requirements-gpu.txt
+    touch "$venv/.ready"
+fi
+
+libs="$venv/lib/python3.11/site-packages/nvidia"
+export LD_LIBRARY_PATH="$libs/cuda_runtime/lib:$libs/cublas/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export PATH="$venv/bin:$PATH"
+export LLAMA_GPU_LAYERS="${LLAMA_GPU_LAYERS:--1}"
+exec "$@"
