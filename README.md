@@ -14,24 +14,27 @@ Three versions of a small calculator agent. The model runs directly inside Pytho
 ### Dev Container
 
 Open this repository as its own folder in VS Code and choose **Dev Containers:
-Reopen in Container**. The image installs the pinned Python packages. In its
-terminal, run `python 01_basic.py`. Rebuild the container after dependency changes.
+Reopen in Container**. The image installs the pinned Python packages and puts
+its virtual environment on `PATH`. Run the examples below directly in the
+container terminal. Rebuild the container after dependency changes.
 
-### Local Python
+### Local Python outside the Dev Container
 
-Use Python 3.11 or newer with working `venv` support (`python3-venv` on Debian
-or Ubuntu). Set up once from the repository root.
+Use Python 3.11 or newer with `venv` support and the `python` command available.
+On Debian or Ubuntu, the `python-is-python3` and `python3-venv` packages provide
+these if needed. Set up once from the repository root.
 
 ```sh
-python3 -m venv .venv
+python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
-Activate the environment in each new terminal, then run any example.
+For local Python, run `source .venv/bin/activate` in each new terminal.
+
+### Examples
 
 ```sh
-source .venv/bin/activate
 python 01_basic.py
 python 02_thoughts.py
 python 03_response.py
