@@ -8,6 +8,5 @@ RUN apt-get update \
 COPY requirements*.txt /tmp/
 USER vscode
 ENV PATH="/home/vscode/.venv/bin:${PATH}"
-ARG REQUIREMENTS=requirements.txt
 RUN python -m venv /home/vscode/.venv \
-    && python -m pip install --no-cache-dir -r "/tmp/$REQUIREMENTS"
+    && python -m pip install --no-cache-dir -r /tmp/requirements-gpu.txt

@@ -6,7 +6,7 @@ from llama_cpp import Llama, llama_supports_gpu_offload
 
 gpu_layers = int(environ.get("LLAMA_GPU_LAYERS", "0"))
 if gpu_layers and not llama_supports_gpu_offload():
-    raise RuntimeError("GPU offload is unavailable. Use the NVIDIA GPU container with CUDA access.")
+    raise RuntimeError("GPU offload is unavailable. Check that the Dev Container can access NVIDIA CUDA.")
 
 folder = snapshot_download("Qwen/Qwen2.5-7B-Instruct-GGUF",
                            local_dir=Path(__file__).resolve().parent / ".models" / "qwen2.5-7b-instruct",

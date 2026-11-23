@@ -2,15 +2,17 @@
 
 ## In the Dev Container
 
-In VS Code, open this repository and select **Dev Containers: Reopen in Container**.
-Choose **Agentic Engineering (CPU)** for the standard setup, or
-**Agentic Engineering (NVIDIA GPU)** on x86-64 Windows with an NVIDIA driver
-that supports CUDA 12.4 and [Docker Desktop using WSL 2](https://docs.docker.com/desktop/features/gpu/).
-If you already have a container open, use **Dev Containers: Switch Container**.
-Both install their Python packages automatically.
+Select **Dev Containers: Reopen in Container** in VS Code. If the old container
+is already open, select **Dev Containers: Rebuild Container** once.
 
-The GPU option uses the same sample commands and model files. To offload fewer
-layers if GPU memory is tight, run `LLAMA_GPU_LAYERS=16 python 01_basic.py`.
+```sh
+python 01_basic.py                     # CPU
+LLAMA_GPU_LAYERS=-1 python 01_basic.py # GPU
+```
+
+The container requires x86-64, an NVIDIA driver with CUDA 12.4 support, and
+[Docker GPU access in WSL 2](https://docs.docker.com/desktop/features/gpu/).
+On a machine without GPU access, use the local setup below.
 
 ## Outside the Dev Container
 
