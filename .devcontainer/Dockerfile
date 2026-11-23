@@ -5,8 +5,9 @@ RUN apt-get update \
     && rm -r /var/lib/apt/lists/* \
     && useradd --create-home --shell /bin/bash vscode
 
-COPY requirements.txt /tmp/requirements.txt
+COPY requirements*.txt /tmp/
 USER vscode
 ENV PATH="/home/vscode/.venv/bin:${PATH}"
+ARG REQUIREMENTS=requirements.txt
 RUN python -m venv /home/vscode/.venv \
-    && pip install --no-cache-dir -r /tmp/requirements.txt
+    && python -m pip install --no-cache-dir -r "/tmp/$REQUIREMENTS"

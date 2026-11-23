@@ -1,0 +1,15 @@
+{
+  "name": "Agentic Engineering (NVIDIA GPU)",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": "../..",
+    "args": {
+      "REQUIREMENTS": "requirements-gpu.txt"
+    }
+  },
+  "runArgs": ["--gpus", "all"],
+  "containerEnv": {
+    "LLAMA_GPU_LAYERS": "-1",
+    "LD_LIBRARY_PATH": "/home/vscode/.venv/lib/python3.11/site-packages/nvidia/cuda_runtime/lib:/home/vscode/.venv/lib/python3.11/site-packages/nvidia/cublas/lib:/usr/local/nvidia/lib:/usr/local/nvidia/lib64"
+  }
+}

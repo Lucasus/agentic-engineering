@@ -1,0 +1,7 @@
+{
+  "name": "Agentic Engineering (CPU)",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": "../.."
+  }
+}

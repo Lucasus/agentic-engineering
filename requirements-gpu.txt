@@ -1,0 +1,5 @@
+-r requirements.txt
+# Select the CUDA wheel explicitly since the CPU wheel has the same version.
+llama-cpp-python @ https://github.com/abetlen/llama-cpp-python/releases/download/v0.3.36-cu124/llama_cpp_python-0.3.36-py3-none-manylinux_2_35_x86_64.whl#sha256=3d53f94464d8d69028d993033d6120439c994108c04375a46205bd1935bc30ad
+nvidia-cuda-runtime-cu12==12.4.127
+nvidia-cublas-cu12==12.4.5.8
